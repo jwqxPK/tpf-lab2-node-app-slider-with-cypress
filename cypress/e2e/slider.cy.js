@@ -18,11 +18,29 @@ describe("Swiper Gallery Test", function () {
 });
 
 describe("Swiper Gallery Test", function () {
-  it('Checks if navigation buttons"', function () {
+  it('Checks if navigation buttons work"', function () {
     cy.visit("http://localhost:3000");
     cy.get(".swiper-button-next").click();
+    cy.wait(2000);
     cy.get(".swiper-slide-active").should("contain", "United Kingdom");
     cy.get(".swiper-button-prev").click();
+    cy.wait(2000);
     cy.get(".swiper-slide-active").should("contain", "Italy");
+  });
+});
+
+describe("Swiper Gallery Test", function () {
+  it('Checks the correctness of all slideres descriptions"', function () {
+    cy.visit("http://localhost:3000");
+    cy.get(".card-description").should("contain", "Rome");
+    cy.get(".card-description").should("contain", "Italy");
+    cy.get(".swiper-button-next").click();
+    cy.wait(2000);
+    cy.get(".card-description").should("contain", "London");
+    cy.get(".card-description").should("contain", "United Kingdom");
+    cy.get(".swiper-button-next").click();
+    cy.wait(2000);
+    cy.get(".card-description").should("contain", "Paris");
+    cy.get(".card-description").should("contain", "France");
   });
 });
